@@ -73,11 +73,12 @@ def reinciando(): #funçao para reiniciar o processo
 
 
 def verificando_conta(conta): #funçao para selecionar as contas 
-    combobox_contas = navegador.find_element(By.XPATH, "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[6]/form/select")
+    combobox_contas = navegador.find_element(By.XPATH, "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[6]/form/select") #abrindo a lista de contas dentro do login
     combobox_contas.click()
     options_contas = combobox_contas.find_elements(By.TAG_NAME, "option")
     sleep(2)
     
+    #extraindo o texto de cada opção na lista até bater com a conta atual
     for option in options_contas:
         if option.text == conta:
             option.click()
@@ -105,7 +106,7 @@ def verificando_data(): #funçao para verificar as datas das opçoes disponiveis
         #pegando ao ano atual
         ano_atual = datetime.now().year
         
-        #se encontrar uma fatura com o mes que o usuario informou e ano atual vai selecionar ela para download
+        #se encontrar uma fatura com o mes atual e ano atual vai selecionar ela para download
         if mes_option == data and ano_option == ano_atual :
             fatura = True
             option.click()
